@@ -1,8 +1,8 @@
 const int N = 100 * 1000 + 17;
 int n, m;
 ve<int> g[N];
-ve<int> tin(n);
-ve<int> tup(n);
+ve<int> tin(N);
+ve<int> tup(N);
 int timer = 0;
 bool used[N];
 
@@ -22,10 +22,10 @@ void dfs(int v, int p) {
 		}
 		else {
 			dfs(to, v);
-			tup[v] = min(tup[v], tin[to]);
+			tup[v] = min(tup[v], tup[to]);
 			if (tup[to] > tin[v])
 			{
-				cout << "BRINGE" << v + 1 << ' ' << to + 1 << endl;
+				cout << "BRINGE " << v + 1 << ' ' << to + 1 << endl;
 			}
 		}
 	}
