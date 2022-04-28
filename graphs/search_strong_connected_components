@@ -1,0 +1,65 @@
+int n, m;
+ve<int>g[N],gr[N];
+int used[N];
+ve<int> res;
+void dfs(int v) {
+	used[v] = true;
+	for (auto x : g[v])
+	{
+		if (!used[x])
+		{
+			dfs(x);
+		}
+	}
+	res.emplace_back(v);
+}
+void dfs_2(int v, ve<int> &comp) {
+	used[v] = true;
+	comp.emplace_back(v);
+	for (auto x : gr[v])
+	{
+		if (!used[x])
+		{
+			dfs_2(x,comp);
+		}
+	}
+
+}
+int main(){
+	cin >> n >> m;
+	forn(i, m) {
+		int u, v;
+		cin >> u >> v;
+		g[u - 1].push_back(v -1);
+		gr[v - 1].push_back(u - 1);	
+	}
+	forn(i, n)
+	{
+		if (!used[i])
+		{
+			dfs(i);
+		}
+	}
+	reverse(all(res));
+	fill(used, used + N, 0);
+	
+	for (auto v : res)
+	{
+		ve<int>comp;
+		if (!used[v])
+		{
+			dfs_2(v,comp);
+		}
+		for (auto x : comp)
+		{
+			cout << x  + 1<< " ";
+		}
+		if (comp.size())
+		{
+			cout << endl;
+
+		}
+	}
+
+}
+  
