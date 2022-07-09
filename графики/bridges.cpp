@@ -25,7 +25,7 @@ void dfs(int v, int p) {
 			tup[v] = min(tup[v], tup[to]);
 			if (tup[to] > tin[v])
 			{
-				cout << "BRINGE " << v + 1 << ' ' << to + 1 << endl;
+				cout << "BRINGE " << v + 1 << " " << to + 1 << endl;
 			}
 		}
 	}
