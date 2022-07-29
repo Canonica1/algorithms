@@ -1,7 +1,7 @@
 
 struct Z {
-	ve<ll> f;
-	ve<ll> r;
+	ve<int> f;
+	ve<int> r;
 	void initFacts() {
 		f.assign(N, 0);
 		r.assign(N, 0);
@@ -13,10 +13,10 @@ struct Z {
 		for (int i = N - 1; i >= 1; i--)
 			r[i - 1] = r[i] * i % MOD;
 	}
-	ll choose(int n, int k) {
+	int choose(int n, int k) {
 		return f[n] * r[n - k] % MOD * r[k] % MOD;
 	}
-	ll perm(int n, int k) {
+	int perm(int n, int k) {
 		return f[n] * r[n-k] % MOD;
 	}
 };
