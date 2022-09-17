@@ -1,15 +1,14 @@
-vector<bool> isprime(N, 1);
+vector<bool> prime;
 vector<int> primes;
-void sieve() {
-    for (int i = 2; i <= N; ++i) {
-        if (isprime[i]) {
+void sieve(int maximum) {
+    prime.assign(maximum + 1, true);
+    prime[0] = prime[1] = false;
+    for (int i = 2; i <= maximum; ++i) {
+        if (prime[i]) {
             primes.push_back(i);
-        }
-        for (auto p : primes) {
-            if (i * p > N) {
-                break;
+            for (int j = i * i; j <= maximum; j += i) {
+                if (prime[j]) prime[j] = false;
             }
-            isprime[i * p] = 0;
         }
     }
 }
