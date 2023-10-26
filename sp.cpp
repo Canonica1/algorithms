@@ -345,3 +345,23 @@ signed main() {
 //        print("correct = ", correct)
 //        print("smart = ", smart)
 //        break
+all:
+	g++ sol.cpp -std=c++20 -Wall -Wextra  -Wshadow -o sol -DONPC -fsanitize=address -fsanitize=undefined  -g
+	./sol < ./test.txt
+al:
+
+% : %.cpp al
+	$(CXX) $@.cpp -std=c++20 -Wall -Wextra  -Wshadow $(CXXFLAGS) -o $@ -DONPC -fsanitize=address -fsanitize=undefined -g
+	./$@ < ./test.txt
+
+st: stupid.cpp test.txt
+	g++ stupid.cpp -std=c++20 -Wall -Wextra  -Wshadow -o stupid -DONPC -fsanitize=address -fsanitize=undefined -g
+	./stupid < ./test.txt
+time: gen.cpp test.txt sol.cpp
+	g++ gen.cpp -std=c++20 -Wall -Wextra  -Wshadow -o gen -DONPC -fsanitize=address -fsanitize=undefined -g
+	./gen > ./test.txt
+	g++ sol.cpp -std=c++20 -o sol -O3
+	time -f %e ./sol < ./test.txt > /dev/null
+grader: sol.cpp grader.cpp
+	g++ sol.cpp grader.cpp -o sol
+	./sol
